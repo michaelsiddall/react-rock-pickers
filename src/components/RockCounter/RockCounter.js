@@ -12,11 +12,17 @@ class RockCounter extends Component {
   }
 
   onDecreaseClick = () => {
+    if(this.state.rocks === 0){
+      this.setState({
+        rocks: 0
+      });
+    }
+   else{ 
     this.setState({
       rocks: this.state.rocks - 1
     });
   }
-
+}
   onResetClick = () => {
     this.setState({
       rocks: 0
@@ -24,10 +30,18 @@ class RockCounter extends Component {
   }
 
   render() {
+
+    let fiftyRockMessage;
+    if (this.state.rocks >= 50) {
+        fiftyRockMessage = 'Done!';
+    }
+    else {
+      fiftyRockMessage = this.state.rocks;
+    }
     return (
       <div>
           <div>
-              Rocks Picked: {this.state.rocks}
+              Rocks Picked: {fiftyRockMessage}
           </div>
           <div>
             <button onClick={this.onIncreaseClick}>Increase</button>
